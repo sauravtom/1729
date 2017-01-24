@@ -1,0 +1,457 @@
+{% extends "base.html" %}
+
+
+{% block title %}NewsMeme Instapush{% endblock %}
+
+{% block css %}
+
+  <style type="text/css">
+   
+
+    input[type="text"]{
+     /* border-color: #0066cc;*/
+     padding-left:5px;
+      border-radius: 4px;
+      border-style: solid;
+      border
+      opacity:0.8;
+      height:100%;
+      box-shadow: inset 1px 1px 2px 0 #212121;
+      transition: box-shadow 0.3s;
+    }
+    .demo_i
+    tr{
+      margin-left:5%;
+      margin-bottom: 0.5%;
+    }
+    tr{
+      float:left;
+    }
+    td {
+      width:150%;
+    }
+    textarea{
+     background: url(http://i.stack.imgur.com/ynxjD.png) repeat-y;
+     width: 100%;
+     height: 80%;
+     font: normal 14px verdana;
+     line-height: 25px;
+     /*padding: 2px 10px;*/
+     border: solid 1px #ddd;
+    }
+
+   /* .container {
+        background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(255,78,225,0.4)), color-stop(100%, rgba(255,255,250,0.5)));
+        
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }*/
+
+      /*.container-full {
+        margin: 0 auto;
+        width: 100%;
+      }*/
+
+      /*.row{
+        background: rgba(255,255,250,0.5);
+        margin: 10px;
+      }*/
+
+      /*.btn-xlarge {
+          padding: 18px 28px;
+          font-size: 22px; 
+          line-height: normal;
+          -webkit-border-radius: 8px;
+             -moz-border-radius: 8px;
+                  border-radius: 8px;
+      }*/
+
+      #hidden_audio{
+        display: none;
+      }
+
+      label{
+        font-size: 150%;
+      }
+     
+  </style>
+{% endblock %}
+
+{% block navtext %}
+    <h3 class='text-right'>Make great educatinal videos</h3>
+
+{% endblock %}
+    
+{% block content %}
+  
+  {% with msgs = get_flashed_messages() %}
+        {% if msgs %}
+          {%- for msg in msgs %}
+            <div class="alert alert-info">
+              {{ msg }}
+            </div>
+          {% endfor -%}
+        {% endif %}
+      {% endwith %}
+
+<link rel="stylesheet" type="text/css" href="static/css/styles.css" />
+
+<section id="page"> <!-- Defining the #page section with the section tag -->
+    
+            <header> <!-- Defining the header section of the page with the appropriate tag -->
+            
+                <hgroup>
+                    
+                    <h3>Some text</h3>
+                </hgroup>
+                                
+                <!-- <nav class="clear"> 
+                        <li><a href="#article1">Photoshoot</a></li>
+                        <li><a href="#article2">Sweet Tabs</a></li>
+                        <li><a href="#article3">Navigation Menu</a></li>
+                    </ul>
+                </nav> -->
+            
+            </header>
+            
+            <section id="articles"> <!-- A new section with the articles -->
+
+        <!-- Article 1 start -->
+
+                <div class="line"></div>  <!-- Dividing line -->
+                
+                <article id="article1"> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
+                    <h2>Heading 1</h2>
+                    
+                    <div class="line"></div>
+                    
+                    <div class="articleBody clear">
+                    
+                      <figure> <!-- The figure tag marks data (usually an image) that is part of the article -->
+                         <div class="form-group">
+              <label for="video_script">News Summary (350 - 450) </label>
+              <p class="wordcount">0</p>
+              <textarea class="hint--bottom" id="video_script" data-hint="Thank you!" type="text" name="video_script" data-validetta="required,minLength[350],maxLength[450]" data-vd-message-required="The video title should be between 350 to 450 characters" placeholder="Copy paste the video script here"></textarea>
+            </div>
+                        </figure>
+                        <div class="row">
+
+    <div class="col-sm-4">
+          
+          <audio id='hidden_audio' controls>
+            <source src="horse.ogg" type="audio/ogg">
+          Your browser does not support the audio element.
+          </audio>
+
+          <form id='mainform' action="dashboard" method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+              <label for="video_input" style="display:inline-block;">Title</label>
+              <p class="wordcount" style="display:inline-block;">0</p>
+              <input id='video_input' type="text" name="video_title">
+            </div>
+            
+            <div class="form-group">
+              <label for="category">Choose Video Type</label>
+              <select name='video_type' id="category">
+                <option value="m">Music only</option>
+                <option value="nm">Narration and Music</option>
+                <option value="n">Narration only</option>
+              </select>
+            </div>
+ 
+            <div class="form-group">
+              <label for="music_files">Choose Music</label>
+              <select id='music_files' name='music'>
+                {%- for file_name in music_files %}
+                  <option value="{{file_name}}">
+                    {{ file_name }}
+                  </option>
+                {% endfor -%}
+                <option value="none">None</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Choose Category</label>
+              <select name='category'>
+                <option value="entertainment">Entertainment</option>
+                <option value="technology">Technology</option>
+                <option value="sports">Business</option>
+                <option value="world">World</option>
+                <option value="nature">Nature</option>
+                <option value="sports">Sports</option>
+                <option value="politics">Politics</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="video_source">Source</label>
+              <input id='video_source' data-validetta="required" type="text" name="source">
+            </div>
+
+           
+
+            <div class="form-group">
+              <label for="writer">Choose Writer</label>
+              <select name='writer' id="writer">
+                <option value="other">other</option>
+                <option value="abhishek">abhishek</option>
+                <option value="joshua">joshua</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="uploader">Choose Uploader</label>
+              <select name='uploader' id="uploader">
+                <option value="other">other</option>
+                <option value="abhishek">abhishek</option>
+                <option value="joshua">joshua</option>
+              </select>
+            </div>
+
+            <input id='form_slide1_img' name='slide1_img' type='hidden'>
+            <input id='form_slide2_img' name='slide2_img' type='hidden'>
+            <input id='form_slide3_img' name='slide3_img' type='hidden'>
+            <input id='form_slide4_img' name='slide4_img' type='hidden'>
+            <input id='form_slide5_img' name='slide5_img' type='hidden'>
+            <input id='form_slide6_img' name='slide6_img' type='hidden'>
+
+            <input id='form_slide1_title' name='slide1_title' type='hidden'>
+            <input id='form_slide2_title' name='slide2_title' type='hidden'>
+            <input id='form_slide3_title' name='slide3_title' type='hidden'>
+            <input id='form_slide4_title' name='slide4_title' type='hidden'>
+            <input id='form_slide5_title' name='slide5_title' type='hidden'>
+            <input id='form_slide6_title' name='slide6_title' type='hidden'>
+
+            <input id='timer' name='timer' type='hidden'>
+
+            <br>
+
+           
+            
+          </form>
+
+    </div>
+                </article>
+                
+        <!-- Article 1 end -->
+
+
+        <!-- Article 2 start -->
+
+                <div class="line"></div>
+                
+                <article id="article2">
+                    <h2>Heading 2</h2>
+                    
+                    <div class="line"></div>
+                    
+                    <div class="articleBody clear">
+
+                      <div class="row">
+              <div class="col-md-4">
+                
+                <div>
+                  <h4>Slide 1</h4>
+                  <form class='f'>
+                  <p class="wordcount">0</p>
+                  <input class='demo_imput' class="hint--top" data-hint="60 characters only" data-validetta="required,minLength[50],maxLength[60]" data-vd-message-required="subtitle should be between 50 to 60 characters." id='slide1_text' placeholder='Slide Subtitle (50 - 60 characters) '><br>
+                  <input class='slide_img' img_id='slide1_img' type='text' placeholder='http://placehold.it/150x100?text=Slide+1'><br>
+                  <img src='http://placehold.it/150x100?text=Slide+1' id='slide1_img'><br>
+                  </form>
+                </div>
+
+                <div>
+                  <h4>Slide 4</h4>
+                  <p class="wordcount">0</p>
+                  <input class='demo_imput' class="hint--top" data-hint="60 characters only" data-validetta="required,minLength[50],maxLength[60]" data-vd-message-required="subtitle should be between 50 to 60 characters." id='slide4_text' placeholder='Slide Subtitle (50 - 60 characters) r'><br>
+                  <input class='slide_img' img_id='slide4_img' type='text' placeholder='http://placehold.it/150x100?text=Slide+4'><br>
+                  <img src='http://placehold.it/150x100?text=Slide+4' id='slide4_img'><br>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                
+                <div>
+                  <h4>Slide 2</h4>
+                  <p class="wordcount">0</p>
+                  <input class='demo_imput' class="hint--top" data-hint="60 characters only" data-validetta="required,minLength[50],maxLength[60]" data-vd-message-required="subtitle should be between 50 to 60 characters." id='slide2_text' placeholder='Slide Subtitle (50 - 60 characters) '>
+
+                  <br>          
+                  <input class='slide_img' img_id='slide2_img' type='text' placeholder='http://placehold.it/150x100?text=Slide+2'><br>
+                  <img src='http://placehold.it/150x100?text=Slide+2' id='slide2_img'><br>
+                </div>
+
+                 <div>
+                  <h4>Slide 5</h4>
+                  <p class="wordcount">0</p>
+                  <input class='demo_imput' class="hint--top" data-hint="60 characters only" data-validetta="required,minLength[50],maxLength[60]" data-vd-message-required="subtitle should be between 50 to 60 characters." id='slide5_text' placeholder='Slide Subtitle (50 - 60 characters) e'><br>
+                  <input class='slide_img' img_id='slide5_img' type='text' placeholder='http://placehold.it/150x100?text=Slide+5'><br>
+                  <img src='http://placehold.it/150x100?text=Slide+5' id='slide5_img'><br>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                
+                <div>
+                  <h4>Slide 3</h4>
+                  <p class="wordcount">0</p>
+                  <input class='demo_imput' class="hint--top" data-hint="60 characters only" data-validetta="required,minLength[50],maxLength[60]" data-vd-message-required="subtitle should be between 50 to 60 characters." id='slide3_text' placeholder='Slide Subtitle (50 - 60 characters) ee'> <br>
+                  <input class='slide_img' img_id='slide3_img' type='text' placeholder='http://placehold.it/150x100?text=Slide+3'><br>
+                  <img src='http://placehold.it/150x100?text=Slide+3' id='slide3_img'><br>
+                </div>
+
+                <div>
+                  <h4>Slide 6</h4>
+                  <p class="wordcount">0</p>
+                  <input class='demo_imput' class="hint--top" data-hint="60 characters only" data-validetta="required,minLength[50],maxLength[60]" data-vd-message-required="subtitle should be between 50 to 60 characters." id='slide6_text' placeholder='Slide Subtitle (50 - 60 characters) '>
+                  <br>
+                  <input class='slide_img' img_id='slide6_img' type='text' placeholder='http://placehold.it/150x100?text=Slide+6'><br>
+                  <img src='http://placehold.it/150x100?text=Slide+6' id='slide6_img'><br>
+                </div>
+              </div>
+          </div>
+                   </div>
+                </article>
+                
+        <!-- Article 2 end -->
+                <input type="submit" class="btn btn-primary btn-lg btn-xlarge" value="Instapush " onclick='update_dummy_form_labels()'>
+            
+        <!-- Article 3 start -->
+
+               
+        <!-- Article 3 end -->
+
+
+            </section>
+
+        <footer> <!-- Marking the footer section -->
+
+           <div class="line"></div>
+           
+           <p>Copyright 2010 - YourSite.com</p> <!-- Change the copyright notice -->
+           
+           <a href="#" class="up">Go UP</a>
+           <a href="http://tutorialzine.com/2010/02/html5-css3-website-template/" class="by">Template by Tutorialzine</a>
+           
+
+        </footer>
+            
+    </section>
+
+  
+
+    <div class="col-md-8">
+
+
+          
+
+
+    </div>
+
+
+  </div>
+
+{% endblock %}
+
+
+{% block script %}
+    
+    <script type="text/javascript">
+      
+      $(document).ready(function() {
+       // executes when HTML-Document is loaded and DOM is ready
+        // $("#mainform").validetta({
+        //     realTime : true
+        // });
+        // $(".f").validetta({
+
+        // });
+        // var clock = $('.your-clock').FlipClock({
+        // // ... your options here
+        // });
+
+        
+
+    
+
+      $( "#music_files" ).change(function() {
+        $("#hidden_audio").attr("src", 'http://chestream.cloudapp.net/newsmeme_raw/background_music/' + $(this).val() ).trigger("play");
+      });
+
+      $('.demo_imput').keyup(updateCount);
+      $('textarea').keyup(updateCount);
+      $('#video_input').keyup(updateCount);
+
+      function updateCount() {
+          var cs = $(this).val().length;
+          //$(this).attr("data-hint",cs)
+          $(this).prev('p').text(cs);  
+          //$('#characters').text(cs);
+      }
+
+      function update_dummy_form_labels(){
+        $('#form_slide1_img').val( $('#slide1_img').attr('src') );
+        $('#form_slide2_img').val( $('#slide2_img').attr('src') );
+        $('#form_slide3_img').val( $('#slide3_img').attr('src') );
+        $('#form_slide4_img').val( $('#slide4_img').attr('src') );
+        $('#form_slide5_img').val( $('#slide5_img').attr('src') );
+        $('#form_slide6_img').val( $('#slide6_img').attr('src') );
+
+        $('#form_slide1_title').val( $('#slide1_text').val() );
+        $('#form_slide2_title').val( $('#slide2_text').val() );
+        $('#form_slide3_title').val( $('#slide3_text').val() );
+        $('#form_slide4_title').val( $('#slide4_text').val() );
+        $('#form_slide5_title').val( $('#slide5_text').val() );
+        $('#form_slide6_title').val( $('#slide6_text').val() );
+
+        $('#timer').val( clock.getTime().time.toString() );
+      }
+
+      function onFileSelected(event) {
+        console.log('fodchamber');
+        var selectedFile = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+          //$('#foo').src = event.target.result;
+          $("#mp3_player").attr('src',event.target.result)
+          //$('#mp3_player').src = event.target.files[0];
+        };
+        
+        console.log($('#mp3_player').src);
+        reader.readAsDataURL(selectedFile);
+      };
+
+      $('.slide_img').on('input', function() {
+          $('#'+$(this).attr("img_id")).attr('src',this.value);
+      });
+      
+
+      function foo(time){
+        n = Math.floor(time/5)+1;
+        if (n>6){
+          $('#movie_img').attr('src',"http://placehold.it/300x200?text=End+Of+Slideshow");
+          $('#movie_subtitle').val("Length of the audio has to be less than 30sec");
+        }
+        image_url = $('#slide'+n+'_img').attr('src');
+        movie_img = $('#movie_img').attr('src');
+        //console.log(time,n);
+        //console.log(image_url,movie_img,n)
+        if (image_url != movie_img){
+          
+          console.log('Current Slide #'+n);
+          
+          image_subtitle = $('#slide'+n+'_text').val();
+          console.log(image_url);
+          n=n+1;
+          $('#movie_img').attr('src',image_url);
+          $('#movie_subtitle').val(image_subtitle);
+        }
+      };
+        });
+    </script>
+    
+{% endblock %}
+ 

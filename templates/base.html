@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet"> 
+        {% block css %}{% endblock %}
+
+    <title>  {% block title %}{% endblock %} </title>
+
+
+    <!-- Custom CSS -->
+    <style>
+    html body{
+        font-family: 'Bitter', serif;
+        text-align:center;
+        /*background: url(https://unsplash.it/1000/800/?random) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;   */
+        color: white !important;
+        overflow-x: hidden;
+        margin-bottom: 6%;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+
+
+    /*.yellow{
+        width: 100%;
+        background: "yellow";
+    }*/
+
+
+    .navbar{
+        height:8%;
+    }
+
+    .navbar-header{
+     margin-top:-01% !important;
+     width:10%;
+    }
+
+
+    #mainpages{
+        margin-top:10% !important;
+    }
+    nav{
+        height:10% !important;
+    }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+ <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" height="5%">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="http://i.imgur.com/6HmI5ON.png" height="50%" width="50%"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Dashboard <span class="sr-only"></span></a></li>
+        <li><a href="/instapush">Instapush</a></li>
+        <li><a href="/archive">Archive</a></li>
+        <li><a href="/excel">Excel</a></li>
+        <li><a href="/analytics">Analytics</a></li>
+        
+      </ul>
+       {% block navtext %}{% endblock %}
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    <!-- Page Content -->
+    
+
+        {% block content %}{% endblock %}
+
+    
+    <!-- /.container -->
+
+    <script src='static/js/jquery.min.js'></script>
+    <script src="static/js/bootstrap.min.js"></script>
+
+
+
+
+    {% block script %}{% endblock %}
+
+</body>
+
+</html>
