@@ -28,7 +28,6 @@
 
 {% block content %}
 
-
         <div class="container">
 
             <div class="row main" id='player'>
@@ -41,36 +40,37 @@
                       <div class=" pre-scrollable" id="fix">
                             <p id="text" class="scroll" style="width:100%"></p><br>
                       </div>
-
                     </div>
 
                     <div class="tile is-child ">
-                        <div id="footnotediv"></div>
-                        <video muted>
-                            <source src="/static/video1/face_34.mp4" type="video/mp4">
+                        <video id="movie_video" style="width:100%"  muted>
+                                              <source src="" type="video/mp4">
+                                    
                         </video>
+                      
                     </div>
                   </div>
 
                   <div class="tile is-parent">
                     <div class="tile is-child notification is-primary">
-                        <figure class="image is-4by3">
-                            <img src="/static/video1/slide_200.png">
-                        </figure>
+                          <figure class="image is-4by3">
+                            <img id='movie_img' src="">
+                          </figure>
                     </div>
                     </div>
                   </div>
 
-                 <div class="col-md-6 col-md-offset-3">
 
-                    <audio id='mp3player' controls ontimeupdate="magic(this.currentTime)">
+                  <audio id='mp3_player' style="width:100%" controls ontimeupdate="run_vid(this.currentTime)">
                         <source src="{{audio_file}}" type="audio/ogg">
-                    </audio>
-
-                </div>
+                          
+                  </audio>
+          
             </div>
 
         </div>
+
+  
 
 
         
@@ -86,17 +86,31 @@
     var data_json = {{data_json|safe}};
     var _image = $('img')[0];
     var _video = $('video')[0];
+    //initial slide 
+    for (i = 0; i < data_json.length; i++) { 
+      if (data_json[i][1] == 'slide'){
+        var img_src=data_json[i][2]
+        $('#movie_img').attr('src',img_src);
+        break;
+      }
+    }  
 
-    function magic(time){
-            //console.log("Hello");
-            n = Math.floor(time)+1;
-            console.log(n);
+    for (i = 0; i < data_json.length; i++) { 
+      if (data_json[i][1] == 'face'){
+        var face_src=data_json[i][2]
+        $('#movie_video').attr('src',face_src);
+        break;
+      }
+    }  
+    function run_vid(time){
+            
+            time_now = Math.floor(time)+1;
+            
             for (i = 0; i < data_json.length; i++) { 
-                console.log(n);
-                if (data_json[i][0] == n){
-                    //console.log(n)
+                
+                if (data_json[i][0] == time_now){
                     if (data_json[i][1] == 'slide'){
-                        var img_src=data_json[i][2]
+                      var img_src=data_json[i][2]
                       $('#movie_img').attr('src',img_src);
                     }
                     if (data_json[i][1] == 'face'){
@@ -115,7 +129,20 @@
             }
     }
 
-
+    function playVid() { 
+      var vid = document.getElementById("movie_video"); 
+      vid.play(); 
+    } 
+    function pauseVid(){
+      var vid= document.getElementById("movie_video");
+      vid.pause();
+    }
+    document.getElementById('mp3_player').addEventListener("pause",function() {
+      pauseVid();
+      })
+    document.getElementById('mp3_player').addEventListener("play",function() {
+      playVid();
+      })
     
   </script>  
   
