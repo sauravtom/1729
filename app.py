@@ -115,7 +115,6 @@ def faceslide(v_id):
         data_json.append(i)
     
     data_json = json.dumps(data_json)
-    return data_json
     
     return render_template('faceslide.html',data_json=data_json,audio_file=audio_file,v_id=v_id)
 
