@@ -68,7 +68,7 @@ def get_data_json(v_id):
             inner.append(files_path+"/"+i)
             data.append(inner)
 
-        if i.endswith(".aac"):
+        if i.endswith(".mp3"):
             audio_file=files_path+"/"+i
             data.append(['0','audio',audio_file])
     
@@ -106,7 +106,7 @@ def faceslide(v_id):
             inner.append(files_path+"/"+i)
             data.append(inner)
 
-        if i.endswith(".aac"):
+        if i.endswith(".mp3"):
             audio_file=files_path+"/"+i
 
     
